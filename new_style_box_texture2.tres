@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dpr7mhyd1g3tw"]
+
+[ext_resource type="Texture2D" uid="uid://bg5v1qgoei2uu" path="res://плай.png" id="1_h6fpp"]
+
+[resource]
+texture = ExtResource("1_h6fpp")
+modulate_color = Color(0.201527, 0.201527, 0.201527, 1)

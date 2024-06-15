@@ -1,0 +1,178 @@
+[gd_scene load_steps=16 format=3 uid="uid://ck8qu2y8l5f6m"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_d17oj"]
+[ext_resource type="Script" path="res://ParallaxBackground.gd" id="2_8bbn8"]
+[ext_resource type="Texture2D" uid="uid://b1m87twonoaeb" path="res://Без имени-1.png" id="2_b0reu"]
+[ext_resource type="Texture2D" uid="uid://dvq1cf342at4q" path="res://Без имени-2.png" id="3_peael"]
+[ext_resource type="Texture2D" uid="uid://bs7kuu6hxdoki" path="res://Без имени-3.png" id="4_6obfq"]
+[ext_resource type="Texture2D" uid="uid://d3h867kgxtnv4" path="res://Без имени-4.png" id="5_06pam"]
+[ext_resource type="StyleBox" uid="uid://citfpr7gt1pcq" path="res://new_style_box_texture.tres" id="6_te0tk"]
+[ext_resource type="Texture2D" uid="uid://cqd5f6ptvr5fj" path="res://Без имени-5.png" id="7_uvv63"]
+[ext_resource type="StyleBox" uid="uid://dpr7mhyd1g3tw" path="res://new_style_box_texture2.tres" id="8_rxcda"]
+[ext_resource type="StyleBox" uid="uid://blixyxp1e31vc" path="res://new_style_box_texture3.tres" id="9_hnqwf"]
+[ext_resource type="StyleBox" uid="uid://dp8idql2nodos" path="res://new_style_box_texture4.tres" id="10_g5edn"]
+[ext_resource type="Texture2D" uid="uid://40icrn0r04fs" path="res://название.png" id="11_dmnq1"]
+
+[sub_resource type="Animation" id="Animation_d1ngh"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(7.46427, 0.34151, 6.96441, 2.92817),
+"update": 0,
+"values": [Vector2(-48, 240), Vector2(276, 240), Vector2(384, 240), Vector2(336, 240)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(7.46425, 0.34151, 6.9644, 2.92817),
+"update": 0,
+"values": [Vector2(216, 360), Vector2(280, 360), Vector2(384, 360), Vector2(336, 360)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Название:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7hflg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-48, 240)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(216, 360)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Название:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1vle"]
+_data = {
+"RESET": SubResource("Animation_7hflg"),
+"new_animation": SubResource("Animation_d1ngh")
+}
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_d17oj")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_8bbn8")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 640)
+
+[node name="БезИмени-1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(576, 322)
+scale = Vector2(0.6, 0.603704)
+texture = ExtResource("2_b0reu")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="БезИмени-1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(576, 322)
+scale = Vector2(0.6, 0.603704)
+texture = ExtResource("3_peael")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1152, 640)
+
+[node name="БезИмени-1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(576, 322)
+scale = Vector2(0.6, 0.603704)
+texture = ExtResource("4_6obfq")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 640)
+
+[node name="БезИмени-1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(576, 322)
+scale = Vector2(0.6, 0.603704)
+texture = ExtResource("5_06pam")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -48.0
+offset_top = 240.0
+offset_right = 328.0
+offset_bottom = 336.0
+theme_override_styles/normal = ExtResource("6_te0tk")
+theme_override_styles/hover = ExtResource("8_rxcda")
+theme_override_styles/pressed = ExtResource("8_rxcda")
+theme_override_styles/disabled = ExtResource("6_te0tk")
+theme_override_styles/focus = ExtResource("8_rxcda")
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 216.0
+offset_top = 360.0
+offset_right = 328.0
+offset_bottom = 456.0
+theme_override_styles/normal = ExtResource("9_hnqwf")
+theme_override_styles/hover = ExtResource("10_g5edn")
+theme_override_styles/pressed = ExtResource("10_g5edn")
+theme_override_styles/disabled = ExtResource("9_hnqwf")
+theme_override_styles/focus = ExtResource("10_g5edn")
+
+[node name="Название" type="Sprite2D" parent="."]
+position = Vector2(688, 64)
+scale = Vector2(0.594827, 0.594828)
+texture = ExtResource("11_dmnq1")
+
+[node name="БезИмени-2" type="Sprite2D" parent="."]
+position = Vector2(576, 322)
+scale = Vector2(0.6, 0.603704)
+texture = ExtResource("7_uvv63")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q1vle")
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
