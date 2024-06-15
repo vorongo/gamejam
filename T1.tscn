@@ -20,7 +20,4 @@ polygon = PackedVector2Array(-80, 8, 80, 8, 80, -128, 104, -144, 104, -160, 80, 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-80, 8, 0, 8, 0, -312, -88, -312, -88, -288, -80, -288, -80, -160, -112, -160, -112, -144, -80, -128)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(0, -144)
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

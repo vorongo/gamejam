@@ -11,6 +11,7 @@ var speed = 400
 var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
 
 func _ready():
+	$bullet/AnimatedSprite2D.play(\"default\")
 	$Timer.start()
 
 func _physics_process(delta):
@@ -61,7 +62,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aqrl4")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
