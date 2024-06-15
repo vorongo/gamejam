@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt3gtjyat8f5p"]
+
+[ext_resource type="PackedScene" uid="uid://muoy2xj6qxwr" path="res://player.tscn" id="1_axo46"]
+[ext_resource type="PackedScene" uid="uid://bjo1l622gso2x" path="res://parallax_background.tscn" id="3_3j8sx"]
+[ext_resource type="PackedScene" uid="uid://biv4xdmvyhhnj" path="res://mod_spawn.tscn" id="4_a2msl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_axo46")]
+position = Vector2(191, 229)
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_3j8sx")]
+
+[node name="Node2D" parent="." instance=ExtResource("4_a2msl")]

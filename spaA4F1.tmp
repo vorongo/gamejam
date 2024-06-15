@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv8stwocsc6fq"]
+
+[ext_resource type="Script" path="res://Node2D2.gd" id="1_k6xtx"]
+[ext_resource type="PackedScene" uid="uid://dgcjufb17ptp" path="res://T1.tscn" id="2_0dgyc"]
+
+[node name="Node2D" type="CharacterBody2D"]
+script = ExtResource("1_k6xtx")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_0dgyc")]
+position = Vector2(584, 728)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("2_0dgyc")]
+position = Vector2(584, -168)
+rotation = 3.14159
