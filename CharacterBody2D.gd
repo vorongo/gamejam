@@ -5,6 +5,7 @@ var speed = 15
 var heath = 100
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var bullet = preload("res://bullet.tscn")
+signal dead_p
 
 func _ready():
 	$Timer.start()
@@ -45,8 +46,13 @@ func clamp_player_to_camera_view():
 	global_position = position # Обновить global_position игрока
 
 func dead():
+	emit_signal("dead_p")
 	$AnimationPlayer.play("dead")
 	$AnimationPlayer/Timer.start()
 
 func _on_timer_timeout2():
 	queue_free()
+
+
+func _on_button_pressed():
+	pass # Replace with function body.

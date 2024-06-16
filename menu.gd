@@ -14,3 +14,15 @@ func _process(delta):
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://lavel.tscn")
 
+
+
+func _on_button_2_pressed():
+	$Button2.visible = false
+	$Button.visible = false
+	$Button3.visible = true
+
+
+func _on_button_3_pressed():
+	$Button2.visible = true
+	$Button.visible = true
+	$Button3.visible = false

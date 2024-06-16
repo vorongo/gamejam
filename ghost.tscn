@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cfxrwrkckbcej" path="res://Ghost.png" id="2_wh4g6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5pdx"]
-radius = 18.2483
+radius = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gdwrp"]
 atlas = ExtResource("2_wh4g6")
@@ -56,6 +56,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ii885"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_jjke0"]
 resource_name = "dead"
 length = 0.5
@@ -72,21 +87,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ii885"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r82x4"]
 _data = {
 "RESET": SubResource("Animation_ii885"),
@@ -100,6 +100,8 @@ script = ExtResource("1_0ut0a")
 shape = SubResource("CircleShape2D_j5pdx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_n083s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

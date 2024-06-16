@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://e4wgtkpknb3a" path="res://character-Sheet.png" id="2_yy87a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ttdmh"]
+radius = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m76c7"]
 atlas = ExtResource("2_yy87a")
@@ -127,6 +128,8 @@ script = ExtResource("1_0x13o")
 shape = SubResource("CircleShape2D_ttdmh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_44g2c")
 animation = &"run"
 frame = 6
