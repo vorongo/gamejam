@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://doyxt4srs1r0j"]
+[gd_scene load_steps=20 format=3 uid="uid://doyxt4srs1r0j"]
 
 [ext_resource type="Script" path="res://bat.gd" id="1_syp13"]
 [ext_resource type="Texture2D" uid="uid://mv8kjqdb2x05" path="res://Particle.png" id="2_xf13k"]
 [ext_resource type="Texture2D" uid="uid://cke2dntieaead" path="res://Bat.png" id="3_wl5aq"]
 [ext_resource type="Texture2D" uid="uid://bydhqxnjnfre4" path="res://Light.png" id="4_eriec"]
+[ext_resource type="AudioStream" uid="uid://db05rgoj2537c" path="res://8-bit-wrong-2-84407.mp3" id="5_36on0"]
+[ext_resource type="AudioStream" uid="uid://b40turkg8gh88" path="res://8-bit-explosion-95847.mp3" id="6_boh6y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5pdx"]
 radius = 32.0
@@ -106,7 +108,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_36xpu"]
 radius = 40.0
 
-[node name="ghost" type="CharacterBody2D" groups=["enamy"]]
+[node name="bat" type="CharacterBody2D" groups=["bat", "enamy"]]
 script = ExtResource("1_syp13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -141,7 +143,7 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 6.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -149,6 +151,15 @@ wait_time = 0.5
 shape = SubResource("CircleShape2D_36xpu")
 
 [node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="run" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_36on0")
+volume_db = -26.687
+autoplay = true
+
+[node name="dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_boh6y")
+volume_db = -14.0
 
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
