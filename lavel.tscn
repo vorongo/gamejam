@@ -1,11 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://dt3gtjyat8f5p"]
+[gd_scene load_steps=14 format=3 uid="uid://dt3gtjyat8f5p"]
 
 [ext_resource type="PackedScene" uid="uid://muoy2xj6qxwr" path="res://player.tscn" id="1_axo46"]
 [ext_resource type="PackedScene" uid="uid://bjo1l622gso2x" path="res://parallax_background.tscn" id="3_3j8sx"]
+[ext_resource type="Script" path="res://traps.gd" id="3_uu37b"]
 [ext_resource type="PackedScene" uid="uid://biv4xdmvyhhnj" path="res://mod_spawn.tscn" id="4_a2msl"]
 [ext_resource type="StyleBox" uid="uid://ccykkrx0xglvx" path="res://new_style_box_texture6.tres" id="4_wl3th"]
 [ext_resource type="StyleBox" uid="uid://bjpqhfogdi0ap" path="res://new_style_box_texture7.tres" id="5_lj46v"]
 [ext_resource type="Script" path="res://Button.gd" id="6_hxv1g"]
+[ext_resource type="AudioStream" uid="uid://dt46in1sr6w63" path="res://BackgroundMusic.mp3" id="7_0somm"]
+[ext_resource type="Texture2D" uid="uid://bjpybgpyodcer" path="res://Traps.png" id="8_4xf18"]
+[ext_resource type="PackedScene" uid="uid://txunpncph86e" path="res://timer.tscn" id="10_w0o8o"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3twc"]
+texture = ExtResource("8_4xf18")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_uwt1u"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_k3twc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hneoe"]
+size = Vector2(42, 704)
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,6 +36,18 @@ position = Vector2(128, 320)
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_3j8sx")]
 
 [node name="Node2D" parent="." instance=ExtResource("4_a2msl")]
+
+[node name="traps" type="TileMap" parent="." groups=["traps"]]
+tile_set = SubResource("TileSet_uwt1u")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 851968, 0, 0, 917504, 0, 0, 983040, 0, 0, 1048576, 0, 0, 1114112, 0, 0, 1179648, 0, 0, 1245184, 0, 0, 1310720, 0, 0, -65536, 0, 0)
+script = ExtResource("3_uu37b")
+
+[node name="Area2D" type="Area2D" parent="traps"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="traps/Area2D"]
+position = Vector2(24, 320)
+shape = SubResource("RectangleShape2D_hneoe")
 
 [node name="Button" type="Button" parent="."]
 visible = false
@@ -30,5 +63,18 @@ theme_override_styles/disabled = ExtResource("4_wl3th")
 theme_override_styles/focus = ExtResource("5_lj46v")
 script = ExtResource("6_hxv1g")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0somm")
+volume_db = -16.865
+autoplay = true
+
+[node name="timer" parent="." instance=ExtResource("10_w0o8o")]
+position = Vector2(520, 32)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.325441, 0.325441, 0.325441, 1)
+
 [connection signal="dead_p" from="CharacterBody2D" to="Button" method="_on_character_body_2d_dead_p"]
+[connection signal="dead_p" from="CharacterBody2D" to="timer" method="_on_character_body_2d_dead_p"]
+[connection signal="body_entered" from="traps/Area2D" to="traps" method="_on_area_2d_body_entered"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -1,10 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://dthvo4cxhph8e"]
+[gd_scene load_steps=18 format=3 uid="uid://dthvo4cxhph8e"]
 
 [ext_resource type="Script" path="res://ghost.gd" id="1_0ut0a"]
+[ext_resource type="Texture2D" uid="uid://mv8kjqdb2x05" path="res://Particle.png" id="2_m5ois"]
 [ext_resource type="Texture2D" uid="uid://cfxrwrkckbcej" path="res://Ghost.png" id="2_wh4g6"]
+[ext_resource type="Texture2D" uid="uid://bydhqxnjnfre4" path="res://Light.png" id="4_bxq85"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5pdx"]
 radius = 32.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4pif"]
+lifetime_randomness = 0.09
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.258
+spread = 10.0
+initial_velocity_max = 56.24
+gravity = Vector3(0, 98, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gdwrp"]
 atlas = ExtResource("2_wh4g6")
@@ -93,16 +103,39 @@ _data = {
 "dead": SubResource("Animation_jjke0")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_36xpu"]
+radius = 40.0
+
 [node name="ghost" type="CharacterBody2D" groups=["enamy"]]
 script = ExtResource("1_0ut0a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("CircleShape2D_j5pdx")
+debug_color = Color(0.432043, 0.110446, 0.253355, 0.42)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.865283, 0.255685, 0.328516, 1)
+position = Vector2(-16, 16)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_b4pif")
+texture = ExtResource("2_m5ois")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.866667, 0.254902, 0.329412, 1)
 position = Vector2(-1.90735e-06, -1.90735e-06)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_n083s")
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(2, 2)
+color = Color(0.995529, 0.666481, 0.755552, 1)
+energy = 7.63
+texture = ExtResource("4_bxq85")
+texture_scale = 2.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -114,8 +147,10 @@ wait_time = 0.5
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_j5pdx")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_36xpu")
+
+[node name="Marker2D" type="Marker2D" parent="."]
 
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

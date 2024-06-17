@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cebk7ibhndj0f"]
+[gd_scene load_steps=12 format=3 uid="uid://cebk7ibhndj0f"]
 
+[ext_resource type="Texture2D" uid="uid://mv8kjqdb2x05" path="res://Particle.png" id="1_v0kpy"]
 [ext_resource type="Texture2D" uid="uid://hjuwuhn5jmee" path="res://Bullet1-Sheet.png" id="1_xlob6"]
+[ext_resource type="Texture2D" uid="uid://bydhqxnjnfre4" path="res://Light.png" id="3_hni6w"]
 
 [sub_resource type="GDScript" id="GDScript_ka7dj"]
 script/source = "extends CharacterBody2D
@@ -30,6 +32,13 @@ func _on_bullet_body_entered(body):
 	if \"wall\" in str(body.name):
 		queue_free()
 "
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6rdtf"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_max = 112.36
+gravity = Vector3(0, 98, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp30k"]
 atlas = ExtResource("1_xlob6")
@@ -75,6 +84,12 @@ script = SubResource("GDScript_ka7dj")
 
 [node name="bullet" type="Area2D" parent="."]
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="bullet"]
+rotation = -3.14159
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_6rdtf")
+texture = ExtResource("1_v0kpy")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bullet"]
 sprite_frames = SubResource("SpriteFrames_o2sug")
 frame_progress = 0.407093
@@ -82,6 +97,11 @@ frame_progress = 0.407093
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bullet"]
 position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_m8jwf")
+
+[node name="PointLight2D" type="PointLight2D" parent="bullet"]
+color = Color(0, 1, 0.592157, 1)
+texture = ExtResource("3_hni6w")
+texture_scale = 0.55
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0

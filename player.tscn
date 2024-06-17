@@ -1,10 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://muoy2xj6qxwr"]
+[gd_scene load_steps=21 format=3 uid="uid://muoy2xj6qxwr"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_0x13o"]
 [ext_resource type="Texture2D" uid="uid://e4wgtkpknb3a" path="res://character-Sheet.png" id="2_yy87a"]
+[ext_resource type="AudioStream" uid="uid://dqnkfuum6b2h7" path="res://DeathFX.mp3" id="3_bcnge"]
+[ext_resource type="AudioStream" uid="uid://buqtnr467m4iu" path="res://ShootFX.mp3" id="4_m1wol"]
+[ext_resource type="Texture2D" uid="uid://bydhqxnjnfre4" path="res://Light.png" id="5_pw3a5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ttdmh"]
-radius = 40.0
+radius = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m76c7"]
 atlas = ExtResource("2_yy87a")
@@ -81,7 +84,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="Animation" id="Animation_w83gq"]
@@ -122,16 +125,26 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D" groups=["enamy", "player"]]
+light_mask = 3
+visibility_layer = 3
 script = ExtResource("1_0x13o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ttdmh")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(16, -24)
+scale = Vector2(0.82, 0.74)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("5_pw3a5")
+texture_scale = 2.7
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1.90735e-06, -1.90735e-06)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_44g2c")
 animation = &"run"
+autoplay = "run"
 frame = 6
 frame_progress = 0.143348
 
@@ -152,6 +165,13 @@ libraries = {
 [node name="Timer" type="Timer" parent="AnimationPlayer"]
 wait_time = 0.5
 
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bcnge")
+volume_db = -10.306
+
+[node name="shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_m1wol")
+volume_db = -23.464
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="AnimationPlayer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AnimationPlayer/Timer" to="." method="_on_timer_timeout2"]

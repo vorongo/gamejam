@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ck8qu2y8l5f6m"]
+[gd_scene load_steps=20 format=3 uid="uid://ck8qu2y8l5f6m"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_d17oj"]
 [ext_resource type="Script" path="res://ParallaxBackground.gd" id="2_8bbn8"]
@@ -10,9 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://cqd5f6ptvr5fj" path="res://Без имени-5.png" id="7_uvv63"]
 [ext_resource type="StyleBox" uid="uid://dpr7mhyd1g3tw" path="res://new_style_box_texture2.tres" id="8_rxcda"]
 [ext_resource type="StyleBox" uid="uid://blixyxp1e31vc" path="res://new_style_box_texture3.tres" id="9_hnqwf"]
+[ext_resource type="Texture2D" uid="uid://bydhqxnjnfre4" path="res://Light.png" id="9_yxppw"]
 [ext_resource type="StyleBox" uid="uid://dp8idql2nodos" path="res://new_style_box_texture4.tres" id="10_g5edn"]
 [ext_resource type="Texture2D" uid="uid://40icrn0r04fs" path="res://название.png" id="11_dmnq1"]
 [ext_resource type="StyleBox" uid="uid://bp130gtxftngg" path="res://new_style_box_texture5.tres" id="11_uni0c"]
+[ext_resource type="AudioStream" uid="uid://dt46in1sr6w63" path="res://BackgroundMusic.mp3" id="14_pf4b4"]
+[ext_resource type="PackedScene" uid="uid://mn1006tb7pxx" path="res://node_2d.tscn" id="15_18t2e"]
 
 [sub_resource type="Animation" id="Animation_7hflg"]
 length = 0.001
@@ -150,6 +153,14 @@ theme_override_styles/pressed = ExtResource("8_rxcda")
 theme_override_styles/disabled = ExtResource("6_te0tk")
 theme_override_styles/focus = ExtResource("8_rxcda")
 
+[node name="PointLight2D2" type="PointLight2D" parent="Button"]
+position = Vector2(192, 48)
+scale = Vector2(1.6, 1.57037)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("9_yxppw")
+texture_scale = 2.7
+
 [node name="Button2" type="Button" parent="."]
 offset_left = 216.0
 offset_top = 360.0
@@ -160,6 +171,14 @@ theme_override_styles/hover = ExtResource("10_g5edn")
 theme_override_styles/pressed = ExtResource("10_g5edn")
 theme_override_styles/disabled = ExtResource("9_hnqwf")
 theme_override_styles/focus = ExtResource("10_g5edn")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Button2"]
+position = Vector2(48, 48)
+scale = Vector2(1.6, 1.57037)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("9_yxppw")
+texture_scale = 2.7
 
 [node name="Button3" type="Button" parent="."]
 visible = false
@@ -172,6 +191,14 @@ theme_override_styles/hover = ExtResource("11_uni0c")
 theme_override_styles/pressed = ExtResource("11_uni0c")
 theme_override_styles/disabled = ExtResource("11_uni0c")
 theme_override_styles/focus = ExtResource("11_uni0c")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Button3"]
+position = Vector2(264, 240)
+scale = Vector2(2.01481, 1.71852)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("9_yxppw")
+texture_scale = 2.7
 
 [node name="Название" type="Sprite2D" parent="."]
 position = Vector2(688, 64)
@@ -188,7 +215,50 @@ libraries = {
 "": SubResource("AnimationLibrary_q1vle")
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_pf4b4")
+volume_db = -16.865
+autoplay = true
+
+[node name="Node2D" parent="." instance=ExtResource("15_18t2e")]
+position = Vector2(512, 256)
+scale = Vector2(9.125, 5.125)
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(360, 64)
+scale = Vector2(2.56, 2.46606)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("9_yxppw")
+texture_scale = 2.7
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(688, 72.0001)
+scale = Vector2(2.56, 2.46606)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("9_yxppw")
+texture_scale = 2.7
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(1000, 72)
+scale = Vector2(2.56, 2.46606)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("9_yxppw")
+texture_scale = 2.7
+
+[node name="PointLight2D5" type="PointLight2D" parent="."]
+position = Vector2(152, 336)
+scale = Vector2(2.56, 2.46606)
+color = Color(0.317647, 0.886275, 0.886275, 0.419608)
+energy = 7.48
+texture = ExtResource("9_yxppw")
+texture_scale = 2.7
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.43134, 0.43134, 0.43134, 1)
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

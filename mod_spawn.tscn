@@ -6,23 +6,23 @@
 script = ExtResource("1_obivx")
 
 [node name="r1" type="RayCast2D" parent="."]
-position = Vector2(1216, 64)
+position = Vector2(1232, 128)
 target_position = Vector2(-64, 0)
 
 [node name="r2" type="RayCast2D" parent="."]
-position = Vector2(1216, 192)
+position = Vector2(1232, 224)
 target_position = Vector2(-64, 0)
 
 [node name="r3" type="RayCast2D" parent="."]
-position = Vector2(1216, 320)
+position = Vector2(1232, 320)
 target_position = Vector2(-64, 0)
 
 [node name="r4" type="RayCast2D" parent="."]
-position = Vector2(1216, 448)
+position = Vector2(1232, 416)
 target_position = Vector2(-64, 0)
 
 [node name="r5" type="RayCast2D" parent="."]
-position = Vector2(1216, 576)
+position = Vector2(1232, 512)
 target_position = Vector2(-64, 0)
 
 [node name="r6" type="RayCast2D" parent="."]
@@ -35,6 +35,21 @@ target_position = Vector2(-64, 0)
 
 [node name="r8" type="RayCast2D" parent="."]
 position = Vector2(1280, 64)
+target_position = Vector2(-64, 0)
+
+[node name="r9" type="RayCast2D" parent="."]
+position = Vector2(0, 320)
+rotation = -3.14159
+target_position = Vector2(-64, 0)
+
+[node name="r10" type="RayCast2D" parent="."]
+position = Vector2(0, 576)
+rotation = -3.14159
+target_position = Vector2(-64, 0)
+
+[node name="r11" type="RayCast2D" parent="."]
+position = Vector2(0, 64)
+rotation = -3.14159
 target_position = Vector2(-64, 0)
 
 [node name="Timer" type="Timer" parent="."]

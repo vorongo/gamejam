@@ -1,0 +1,155 @@
+[gd_scene load_steps=18 format=3 uid="uid://doyxt4srs1r0j"]
+
+[ext_resource type="Script" path="res://bat.gd" id="1_syp13"]
+[ext_resource type="Texture2D" uid="uid://mv8kjqdb2x05" path="res://Particle.png" id="2_xf13k"]
+[ext_resource type="Texture2D" uid="uid://cke2dntieaead" path="res://Bat.png" id="3_wl5aq"]
+[ext_resource type="Texture2D" uid="uid://bydhqxnjnfre4" path="res://Light.png" id="4_eriec"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5pdx"]
+radius = 32.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4pif"]
+lifetime_randomness = 0.09
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.258
+spread = 10.0
+initial_velocity_max = 56.24
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u7l5"]
+atlas = ExtResource("3_wl5aq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7l5m"]
+atlas = ExtResource("3_wl5aq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_revcw"]
+atlas = ExtResource("3_wl5aq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orhmr"]
+atlas = ExtResource("3_wl5aq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8si4c"]
+atlas = ExtResource("3_wl5aq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cgni"]
+atlas = ExtResource("3_wl5aq")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n083s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u7l5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7l5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_revcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orhmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8si4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cgni")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ii885"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jjke0"]
+resource_name = "dead"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r82x4"]
+_data = {
+"RESET": SubResource("Animation_ii885"),
+"dead": SubResource("Animation_jjke0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36xpu"]
+radius = 40.0
+
+[node name="ghost" type="CharacterBody2D" groups=["enamy"]]
+script = ExtResource("1_syp13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j5pdx")
+debug_color = Color(0.432043, 0.110446, 0.253355, 0.42)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_b4pif")
+texture = ExtResource("2_xf13k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.866667, 0.254902, 0.329412, 1)
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_n083s")
+autoplay = "default"
+flip_v = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(2, 2)
+color = Color(0.995529, 0.666481, 0.755552, 1)
+energy = 7.63
+texture = ExtResource("4_eriec")
+texture_scale = 2.8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r82x4")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_36xpu")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_animation_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

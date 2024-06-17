@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://txunpncph86e"]
+
+[ext_resource type="Script" path="res://timer.gd" id="1_urfs3"]
+[ext_resource type="Texture2D" uid="uid://bydhqxnjnfre4" path="res://Light.png" id="2_j1wsm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssaae"]
+bg_color = Color(0.2622, 0.27759, 0.57, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rn8i"]
+bg_color = Color(0.6, 0.6, 0.384314, 1)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+
+[node name="timer" type="Node2D"]
+script = ExtResource("1_urfs3")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 64.0
+offset_bottom = 23.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ssaae")
+text = "text"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 64.0
+offset_right = 192.0
+offset_bottom = 23.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_3rn8i")
+text = "text"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(92, 12)
+scale = Vector2(0.942857, 0.142857)
+color = Color(1, 1, 1, 0.141176)
+energy = 7.63
+texture = ExtResource("2_j1wsm")
+texture_scale = 2.8

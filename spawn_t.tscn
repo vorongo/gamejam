@@ -8,13 +8,13 @@
 script = ExtResource("1_k6xtx")
 
 [node name="wall" parent="." instance=ExtResource("2_0dgyc")]
-position = Vector2(0, 648)
+position = Vector2(0, 800)
 
 [node name="wall2" parent="." instance=ExtResource("2_0dgyc")]
 position = Vector2(0, 496)
 
 [node name="wall3" parent="." instance=ExtResource("3_1npgh")]
-position = Vector2(0, -656)
+position = Vector2(0, -792)
 rotation = -3.14159
 
 [node name="wall4" parent="." instance=ExtResource("3_1npgh")]
